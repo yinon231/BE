@@ -83,6 +83,7 @@ deleteDonation=async(value)=>{
 updateDonation=async(value)=>{
     let data=await getAllDonations();
     data=JSON.parse(data);
+    
     const {id,items} = value;
     data=data.map((item) => {
         if (item.id === id) {

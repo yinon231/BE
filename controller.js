@@ -75,7 +75,7 @@ const deleteDonation = (req, res) => {
         }
     });
 }
-const updateDonation=async(req,res)=>{
+const updateDonation = (req, res) => {
     let data = '';
     req.on('data', chunk => {
         data += chunk;
@@ -94,4 +94,4 @@ const updateDonation=async(req,res)=>{
     });
 
 }
-module.exports = { getAllDonations, getAllDonationsById, createDonation, deleteDonation,updateDonation };
+module.exports = { getAllDonations, getAllDonationsById, createDonation, deleteDonation, updateDonation };
