@@ -79,22 +79,21 @@ deleteDonation = async (value) => {
         });
     });
 }
-updateDonation=async(value)=>{
-    let data=await getAllDonations();
-    data=JSON.parse(data);
-    const {id,items} = value;
-    data=data.map((item) => {
-        if (item.id === id) {
-            return { id, items };
-        }
-        return item;
-    });
+updateDonation = async (value) => {
+    let data = await getAllDonations();
     return new Promise((resolve, reject) => {
-        if(!data.find(item=>item.id===id)) 
-        {
-             reject(new Error("ID not found"));
+        data = JSON.parse(data);
+        const { id, items } = value;
+        if (!data.find(item => item.id === id)) {
+            reject(new Error("ID not found"));
         }
-        const writeStream=fs.createWriteStream('donations.json', 'utf8')
+        data = data.map((item) => {
+            if (item.id === id) {
+                return { id, items };
+            }
+            return item;
+        });
+        const writeStream = fs.createWriteStream('donations.json', 'utf8')
         writeStream.on('error', error => {
             reject(error);
         });
