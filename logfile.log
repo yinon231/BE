@@ -1,0 +1,4 @@
+info: Received request: GET /donation
+error: Response status: 404
+info: Received request: GET /donation
+info: Response status: 200

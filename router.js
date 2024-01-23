@@ -1,5 +1,6 @@
 const url = require('url');
 const controller=require('./controller');
+const logger=require('./logger');
 const router=(req,res)=>{
     const parsedUrl = url.parse(req.url, true);
     const path = parsedUrl.path;
@@ -21,6 +22,7 @@ const router=(req,res)=>{
     else{
         res.writeHead(404,{'Content-Type':'application/json'});
         res.end(JSON.stringify({message:"Route not found"}));
+        logger.info(`Response status: ${res.statusCode}`);
     }
 }
 module.exports={router};
