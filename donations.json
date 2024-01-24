@@ -33,5 +33,14 @@
                 "amount": 1000
             }
         ]
+    },
+    {
+        "id": 4,
+        "items": [
+            {
+                "name": "shirts",
+                "amount": 100
+            }
+        ]
     }
 ]
