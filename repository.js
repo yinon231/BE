@@ -14,26 +14,18 @@ getAllDonations = () => {
             });
     });
 }
-getAllDonationsById = (queryId) => {
-    let data = '';
+getAllDonationsById = async (queryId) => {
+    let data = await getAllDonations();
     return new Promise((resolve, reject) => {
-        fs.createReadStream('donations.json', 'utf8')
-            .on('error', error => {
-                reject(error);
-            })
-            .on('data', chunk => {
-                data += chunk;
-            })
-            .on('end', () => {
-                try {
-                    data = JSON.parse(data);
-                    let filteredData = data.find(item => item.id == queryId);
-                    filteredData = JSON.stringify(filteredData);
-                    resolve(filteredData);
-                } catch (parseError) {
-                    reject(parseError);
-                }
-            });
+        try {
+            data = JSON.parse(data);
+            let filteredData = data.find(item => item.id == queryId);
+            filteredData = JSON.stringify(filteredData);
+            resolve(filteredData);
+
+        } catch (parseError) {
+            reject(parseError);
+        }
     });
 
 }

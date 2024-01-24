@@ -1,7 +1,9 @@
 const url = require('url');
 const controller=require('./controller');
-const logger=require('./logger');
+const {logSuccess,logError}=require('./logger');
+const { error } = require('console');
 const router=(req,res)=>{
+   logSuccess.info(`Received request: ${req.method} ${req.url}`);
     const parsedUrl = url.parse(req.url, true);
     const path = parsedUrl.path;
      if(req.method==='GET' && path==='/donation'){  
@@ -22,7 +24,7 @@ const router=(req,res)=>{
     else{
         res.writeHead(404,{'Content-Type':'application/json'});
         res.end(JSON.stringify({message:"Route not found"}));
-        logger.info(`Response status: ${res.statusCode}`);
+        logError.error(`Response status: ${res.statusCode}`);
     }
 }
 module.exports={router};
